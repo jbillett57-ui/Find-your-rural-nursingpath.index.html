@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Your Rural Nursing Path</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --color-text-primary: #1a1a18;
+    --color-text-secondary: #5f5e5a;
+    --color-text-tertiary: #888780;
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #f5f4f0;
+    --color-border-tertiary: rgba(0,0,0,0.12);
+    --color-border-secondary: rgba(0,0,0,0.22);
+    --color-border-primary: rgba(0,0,0,0.32);
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+
+    --blue-50: #E6F1FB;
+    --blue-100: #B5D4F4;
+    --blue-200: #378ADD;
+    --blue-600: #185FA5;
+    --blue-800: #0C447C;
+    --slate-50: #EDF1F6;
+    --slate-100: #C2CFE0;
+    --slate-600: #3D5A7A;
+    --slate-800: #253A52;
+    --stone-50: #F2F0EB;
+    --stone-100: #DCD9D0;
+    --stone-600: #6B6760;
+    --stone-800: #46443E;
+    --navy-50: #E8EDF5;
+    --navy-100: #B4C2D8;
+    --navy-600: #2C4A72;
+    --navy-800: #1A2F4A;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-text-primary: #e8e6de;
+      --color-text-secondary: #a8a69e;
+      --color-text-tertiary: #737169;
+      --color-background-primary: #1e1e1c;
+      --color-background-secondary: #28281f;
+      --color-border-tertiary: rgba(255,255,255,0.1);
+      --color-border-secondary: rgba(255,255,255,0.2);
+      --color-border-primary: rgba(255,255,255,0.3);
+
+      --blue-50: #0d1e30;
+      --blue-100: #153050;
+      --blue-200: #185FA5;
+      --blue-600: #85B7EB;
+      --blue-800: #B5D4F4;
+      --slate-50: #131c27;
+      --slate-100: #1e2e42;
+      --slate-600: #C2CFE0;
+      --slate-800: #EDF1F6;
+      --stone-50: #222018;
+      --stone-100: #38362e;
+      --stone-600: #c8c5bc;
+      --stone-800: #e8e6de;
+      --navy-50: #0e1825;
+      --navy-100: #1a283a;
+      --navy-600: #B4C2D8;
+      --navy-800: #E8EDF5;
+    }
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--color-background-secondary);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: 620px;
+    padding: 2rem 1.5rem 2.5rem;
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-lg);
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .header h1 {
+    font-family: 'Lora', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: 4px;
+  }
+
+  .header-sub {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: 8px;
+  }
+
+  .header p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 3px;
+    background: var(--color-border-tertiary);
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--blue-200);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+
+  .question-card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .question-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: 0.5rem;
+  }
+
+  .question-text {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--color-text-primary);
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    width: 100%;
+  }
+
+  .option-btn:hover {
+    background: var(--color-background-secondary);
+    border-color: var(--color-border-primary);
+  }
+
+  .option-btn:active { transform: scale(0.99); }
+
+  .option-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-border-secondary);
+    flex-shrink: 0;
+  }
+
+  .back-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1rem;
+  }
+
+  .back-btn:hover { color: var(--color-text-primary); }
+
+  .result-container { display: flex; flex-direction: column; gap: 1rem; }
+
+  .result-primary {
+    border-radius: var(--border-radius-lg);
+    border: 2px solid;
+    padding: 1.5rem;
+  }
+
+  .result-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: var(--border-radius-md);
+    margin-bottom: 0.75rem;
+  }
+
+  .result-title {
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .result-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .result-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 1rem;
+  }
+
+  .feature-tag {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 0.5px solid;
+  }
+
+  .result-cta {
+    width: 100%;
+    padding: 11px;
+    border-radius: var(--border-radius-md);
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    transition: opacity 0.15s;
+    text-align: center;
+  }
+
+  .result-cta:hover { opacity: 0.85; }
+
+  .also-consider {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1.25rem;
+  }
+
+  .also-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.75rem;
+  }
+
+  .mini-cards { display: flex; flex-direction: column; gap: 8px; }
+
+  .mini-card {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+  }
+
+  .mini-card-name { font-weight: 500; }
+  .mini-card-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 1px; }
+  .mini-arrow { color: var(--color-text-tertiary); font-size: 16px; }
+
+  .restart-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--border-radius-md);
+    border: 0.5px solid var(--color-border-secondary);
+    background: transparent;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    transition: background 0.15s;
+  }
+
+  .restart-btn:hover { background: var(--color-background-primary); color: var(--color-text-primary); }
+
+  .theme-green .result-primary { border-color: var(--blue-200); background: var(--blue-50); }
+  .theme-green .result-badge { background: var(--blue-100); color: var(--blue-800); }
+  .theme-green .result-title { color: var(--blue-800); }
+  .theme-green .result-desc { color: var(--blue-600); }
+  .theme-green .feature-tag { background: var(--blue-50); border-color: var(--blue-100); color: var(--blue-600); }
+  .theme-green .result-cta { background: var(--blue-600); color: #fff; }
+
+  .theme-teal .result-primary { border-color: var(--slate-100); background: var(--slate-50); }
+  .theme-teal .result-badge { background: var(--slate-100); color: var(--slate-800); }
+  .theme-teal .result-title { color: var(--slate-800); }
+  .theme-teal .result-desc { color: var(--slate-600); }
+  .theme-teal .feature-tag { background: var(--slate-50); border-color: var(--slate-100); color: var(--slate-600); }
+  .theme-teal .result-cta { background: var(--slate-600); color: #fff; }
+
+  .theme-amber .result-primary { border-color: var(--blue-200); background: var(--stone-50); border-width: 2px; }
+  .theme-amber .result-badge { background: var(--blue-600); color: #fff; }
+  .theme-amber .result-title { color: var(--stone-800); }
+  .theme-amber .result-desc { color: var(--stone-600); }
+  .theme-amber .feature-tag { background: var(--blue-50); border-color: var(--blue-100); color: var(--blue-800); }
+  .theme-amber .result-cta { background: var(--blue-600); color: #fff; }
+
+  .theme-purple .result-primary { border-color: var(--navy-100); background: var(--navy-50); }
+  .theme-purple .result-badge { background: var(--navy-100); color: var(--navy-800); }
+  .theme-purple .result-title { color: var(--navy-800); }
+  .theme-purple .result-desc { color: var(--navy-600); }
+  .theme-purple .feature-tag { background: var(--navy-50); border-color: var(--navy-100); color: var(--navy-600); }
+  .theme-purple .result-cta { background: var(--navy-600); color: #fff; }
+
+  .fade-in { animation: fadeSlide 0.3s ease forwards; }
+  @keyframes fadeSlide { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs8Fmm24URFcbiozeicK4Cai3ChQFZK0uHFA&s" alt="Department of Rural Health logo" style="height:56px; width:auto; margin-bottom:1rem; display:block; margin-left:auto; margin-right:auto;">
+    <h1>Find Your Rural Path</h1>
+    <p class="header-sub">with the Department of Rural Health</p>
+    <p>Answer a few questions to discover which pathway suits you best</p>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+
+  <div id="content"></div>
+</div>
+
+<script>
+const programs = {
+  collaborative: {
+    id: 'collaborative',
+    name: 'Rural Collaborative Program',
+    badge: 'Best match',
+    theme: 'green',
+    tagline: 'Placements in 2nd & 3rd year at Tamworth',
+    desc: 'Apply in your 1st year to secure your spot. You\'ll then complete rural placements in Tamworth during 2nd and 3rd year, with subsidised accommodation provided for your time there — a great way to experience rural health without relocating full-time.',
+    features: ['Apply in 1st year', '2nd & 3rd year placements', 'Subsidised accommodation', 'Tamworth-based'],
+  },
+  immersion: {
+    id: 'immersion',
+    name: 'Rural Immersion Program',
+    badge: 'Best match',
+    theme: 'teal',
+    tagline: 'Full 3rd year in Tamworth',
+    desc: 'Immerse yourself fully in rural health for your entire third year. You\'ll complete all structured learning experiences (SLE) at the Tamworth Education Centre, engage in interprofessional community activities alongside other health students, and receive subsidised accommodation for the year.',
+    features: ['Full 3rd year in Tamworth', 'All SLE at Tamworth', 'Interprofessional activities', 'Subsidised accommodation for the year'],
+    link: 'https://www.newcastle.edu.au/college/health-medicine-wellbeing/department-of-rural-health/placement-information/disciplines/nursing/nursing-rural-immersion-program',
+  },
+  studyinplace: {
+    id: 'studyinplace',
+    name: 'Study in Place',
+    badge: 'Best match',
+    theme: 'amber',
+    tagline: 'Study locally in Tamworth — 2nd & 3rd year',
+    desc: 'Purpose-built for students who are already in or from the Tamworth / north-west region. Study your 2nd and 3rd year locally, completing all SLE at the Tamworth Education Centre with placements across the North West New England region.',
+    features: ['Local/returning students', 'All SLE at Tamworth', 'North West NE placements', '2nd & 3rd year'],
+    link: 'https://www.newcastle.edu.au/college/health-medicine-wellbeing/department-of-rural-health/placement-information/disciplines/nursing/study-in-place-program',
+  },
+  placements: {
+    id: 'placements',
+    name: 'Rural Placements',
+    badge: 'Best match',
+    theme: 'purple',
+    tagline: 'Placements across regional NSW',
+    desc: 'Not ready to commit to a full program? You can apply for individual rural placements across a wide range of locations — Tamworth, Armidale, Inverell, Taree, Coffs Harbour, and Port Macquarie — and access subsidised accommodation while you\'re there.',
+    features: ['6+ placement locations', 'Subsidised accommodation', 'Flexible — any year', 'No full program needed'],
+  }
+};
+
+const questions = [
+  {
+    id: 'year',
+    text: 'Which year of your nursing degree are you in?',
+    options: [
+      { label: '1st year', value: '1st' },
+      { label: '2nd year', value: '2nd' },
+      { label: '3rd year', value: '3rd' },
+    ]
+  },
+  {
+    id: 'commitment',
+    text: 'How much time are you open to spending in a rural area?',
+    options: [
+      { label: 'Short term placements', value: 'short' },
+      { label: 'Multiple placements', value: 'medium' },
+      { label: 'A full year', value: 'full' },
+      { label: 'I\'d like to stay and study there long-term', value: 'permanent' },
+    ]
+  },
+  {
+    id: 'interpro',
+    text: 'How important is working alongside other health professions (medicine, pharmacy, etc.)?',
+    options: [
+      { label: 'Very — I want that experience', value: 'yes' },
+      { label: 'Nice to have, but not essential', value: 'maybe' },
+      { label: 'Not a priority right now', value: 'no' },
+    ]
+  }
+];
+
+let answers = {};
+let history = [];
+let currentQ = 0;
+
+function getResult() {
+  const { year, commitment, interpro } = answers;
+  if (commitment === 'permanent') {
+    return { primary: programs.studyinplace, also: [programs.collaborative, programs.placements] };
+  }
+  if (commitment === 'short') {
+    return { primary: programs.placements, also: [programs.collaborative, programs.immersion] };
+  }
+  if (commitment === 'full' || (commitment === 'medium' && interpro === 'yes')) {
+    return { primary: programs.immersion, also: [programs.collaborative, programs.placements] };
+  }
+  if (commitment === 'medium' || year === '1st' || year === '2nd' || year === '3rd') {
+    return { primary: programs.collaborative, also: [programs.immersion, programs.placements] };
+  }
+  return { primary: programs.placements, also: [programs.collaborative, programs.immersion] };
+}
+
+function renderQuestion(idx) {
+  const q = questions[idx];
+  document.getElementById('progress').style.width = ((idx / questions.length) * 100) + '%';
+  const showBack = history.length > 0;
+  let html = `<div class="fade-in">`;
+  if (showBack) html += `<button class="back-btn" onclick="goBack()">← Back</button>`;
+  html += `
+    <div class="question-card">
+      <div class="question-label">Question ${idx + 1} of ${questions.length}</div>
+      <div class="question-text">${q.text}</div>
+      <div class="options">
+        ${q.options.map(opt => `
+          <button class="option-btn" onclick="answer('${q.id}','${opt.value}')">
+            <span class="option-dot"></span>
+            ${opt.label}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  </div>`;
+  document.getElementById('content').innerHTML = html;
+}
+
+function renderResult() {
+  document.getElementById('progress').style.width = '100%';
+  const { primary, also } = getResult();
+  const p = primary;
+
+  const alsoHtml = also.map(prog => `
+    <div class="mini-card" onclick="showProgram('${prog.id}')" style="cursor:pointer;">
+      <div>
+        <div class="mini-card-name">${prog.name}</div>
+        <div class="mini-card-sub">${prog.tagline}</div>
+      </div>
+      <span class="mini-arrow">→</span>
+    </div>
+  `).join('');
+
+  const html = `<div class="fade-in result-container">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <div class="theme-${p.theme}">
+      <div class="result-primary">
+        <div class="result-badge">${p.badge}</div>
+        <div class="result-title">${p.name}</div>
+        <div class="result-desc">${p.desc}</div>
+        <div class="result-features">
+          ${p.features.map(f => `<span class="feature-tag">${f}</span>`).join('')}
+        </div>
+        ${p.link ? `<a href="${p.link}" target="_blank" class="result-cta" style="display:block;text-decoration:none;text-align:center;">Learn more & how to apply →</a>` : ''}
+      </div>
+    </div>
+    <div class="also-consider">
+      <div class="also-title">Also worth exploring</div>
+      <div class="mini-cards">${alsoHtml}</div>
+    </div>
+    <button class="restart-btn" onclick="restart()">Start over</button>
+  </div>`;
+
+  document.getElementById('content').innerHTML = html;
+}
+
+function showProgram(id) {
+  const p = programs[id];
+  const also = Object.values(programs).filter(prog => prog.id !== id).slice(0, 2);
+
+  const alsoHtml = also.map(prog => `
+    <div class="mini-card" onclick="showProgram('${prog.id}')" style="cursor:pointer;">
+      <div>
+        <div class="mini-card-name">${prog.name}</div>
+        <div class="mini-card-sub">${prog.tagline}</div>
+      </div>
+      <span class="mini-arrow">→</span>
+    </div>
+  `).join('');
+
+  const html = `<div class="fade-in result-container">
+    <button class="back-btn" onclick="renderResult()">← Back to your result</button>
+    <div class="theme-${p.theme}">
+      <div class="result-primary">
+        <div class="result-badge">Program details</div>
+        <div class="result-title">${p.name}</div>
+        <div class="result-desc">${p.desc}</div>
+        <div class="result-features">
+          ${p.features.map(f => `<span class="feature-tag">${f}</span>`).join('')}
+        </div>
+        ${p.link ? `<a href="${p.link}" target="_blank" class="result-cta" style="display:block;text-decoration:none;text-align:center;">Learn more & how to apply →</a>` : ''}
+      </div>
+    </div>
+    <div class="also-consider">
+      <div class="also-title">Also worth exploring</div>
+      <div class="mini-cards">${alsoHtml}</div>
+    </div>
+    <button class="restart-btn" onclick="restart()">Start over</button>
+  </div>`;
+
+  document.getElementById('content').innerHTML = html;
+  document.getElementById('progress').style.width = '100%';
+}
+
+
+function answer(qid, val) {
+  answers[qid] = val;
+  history.push(currentQ);
+  currentQ++;
+  if (currentQ >= questions.length) {
+    renderResult();
+  } else {
+    renderQuestion(currentQ);
+  }
+}
+
+function goBack() {
+  if (history.length === 0) return;
+  currentQ = history.pop();
+  const q = questions[currentQ];
+  if (q) delete answers[q.id];
+  if (currentQ >= questions.length) {
+    renderResult();
+  } else {
+    renderQuestion(currentQ);
+  }
+}
+
+function restart() {
+  answers = {};
+  history = [];
+  currentQ = 0;
+  renderQuestion(0);
+}
+
+renderQuestion(0);
+</script>
+</body>
+</html>
